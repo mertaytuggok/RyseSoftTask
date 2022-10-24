@@ -11,8 +11,11 @@ export const TodoList = ({ todo }) => {
       </div>
       <div className=" mt-8">
         <ul className=" grid space-y-2 ">
-          {todo.map((item) => (
-            <li className="flex justify-start items-center  space-x-4  ">
+          {todo.map((item, key) => (
+            <li
+              key={key}
+              className="flex justify-start items-center  space-x-4  "
+            >
               <div className=" rounded-2xl w-[45px] h-[45px]   bg-gray-300 items-center justify-center flex ">
                 {item.icon == "time" ? (
                   <BiTimeFive size={30} />

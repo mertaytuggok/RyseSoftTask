@@ -8,8 +8,11 @@ export const Email = ({ mail }) => {
       </p>
       <div className="flex justify-between text-sm text-slate-500 ">
         <ul className="p-5 w-full">
-          {mail.map((item) => (
-            <li className="transition ease-in-out delay-250 hover:rounded-2xl hover:-translate-y-0.5 hover:scale-80 hover:bg-zinc-50 duration-300  ">
+          {mail.map((item, key) => (
+            <li
+              key={key}
+              className="transition ease-in-out delay-250 hover:rounded-2xl hover:-translate-y-0.5 hover:scale-80 hover:bg-zinc-50 duration-300  "
+            >
               <div className="flex w-full justify-between space-x-28 pt-1 ">
                 <div className=" w-[40px] h-[40px] rounded-full  ">
                   <img src={ProfileSvg} alt="Profile" />
