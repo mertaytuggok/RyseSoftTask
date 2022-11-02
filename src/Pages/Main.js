@@ -1,27 +1,42 @@
 import React from "react";
-import { BalanceCard } from "../Components/BalanceCard";
+import { HeaderCard } from "../Components/HeaderCard";
 import { Clients } from "../Components/Clients";
-import { DayCard } from "../Components/DayCard";
 import { Email } from "../Components/Email";
 import { Header } from "../Components/Header";
-import { Invoices } from "../Components/Invoices ";
-import { PercentCard } from "../Components/PercentCard";
 import { ProfileCard } from "../Components/ProfileCard";
-import { SpendingCard } from "../Components/SpendingCard";
 import { Title } from "../Components/Title";
 import { Revenue } from "../Components/Chart/Revenue";
+import { CiWallet } from "react-icons/ci";
+import { CiCalendarDate } from "react-icons/ci";
+import { SlWallet } from "react-icons/sl";
+import { SlPieChart } from "react-icons/sl";
 
 export const Main = () => {
   const data = {
     name: "James",
-    balance: "143,624",
-    cardSpending: "$3,287.49",
-    workingDay: "7",
+    balance: {
+      balance: "$143,624",
+      icon: <CiWallet size={45} fontWeight={600} />,
+      comment: "Your bank balance",
+    },
+    cardSpending: {
+      balance: "$3,287.49",
+      icon: <SlWallet size={40} />,
+      comment: " This week's card spending",
+    },
+    percent: <SlPieChart size={45} fontWeight={600} />,
+    workingDay: {
+      day: "7",
+      icon: <CiCalendarDate size={45} />,
+      comment: " Employees working today",
+    },
     newClients: {
+      title: "New Clients",
       count: "54",
       countPercent: "+2,7%",
     },
     overdue: {
+      title: "Invoices overdue",
       count: "6",
       percent: "+18,54%",
     },
@@ -98,15 +113,27 @@ export const Main = () => {
         <Title userName={data.name} />
         <div className="grid  ">
           <div className=" flex flex-row mt-20 sm:row-span-2 ">
-            <BalanceCard remainder={data.balance} />
+            <HeaderCard
+              remainder={data.balance.balance}
+              icon={data.balance.icon}
+              comment={data.balance.comment}
+            />
             <div className="pl-5">
-              <PercentCard />
+              <HeaderCard icon={data.percent} />
             </div>
             <div className="pl-5">
-              <DayCard day={data.workingDay} />
+              <HeaderCard
+                remainder={data.workingDay.day}
+                icon={data.workingDay.icon}
+                comment={data.workingDay.comment}
+              />
             </div>
             <div className="pl-5">
-              <SpendingCard spending={data.cardSpending} />
+              <HeaderCard
+                remainder={data.cardSpending.balance}
+                icon={data.cardSpending.icon}
+                comment={data.cardSpending.comment}
+              />
             </div>
           </div>
           <div className=" flex  mt-4">
@@ -114,11 +141,13 @@ export const Main = () => {
               <Clients
                 clients={data.newClients.count}
                 percent={data.newClients.countPercent}
+                title={data.newClients.title}
               />
               <div className="pt-5">
-                <Invoices
+                <Clients
                   clients={data.overdue.count}
                   percent={data.overdue.percent}
+                  title={data.overdue.title}
                 />
               </div>
             </div>
